@@ -1,0 +1,50 @@
+ $dark-grey: #424242;
+ $grey: #eceff1;
+
+ $blue: #009fe3;
+ $red:#e20f1b;
+ body {
+     font-family: 'LatoRegular', sans-serif;
+     font-size: 17px;
+     line-height: 1;
+     position: relative;
+
+     color: #373d42;
+     background-color: #fafafa;
+ }
+
+ ul {
+     padding: 0;
+
+     list-style: none;
+ }
+
+ @font-face {
+     font-family: "LatoRegular";
+     src: url("../fonts/LatoRegular/LatoRegular.eot");
+     src: url("../fonts/LatoRegular/LatoRegular.eot?#iefix")format("embedded-opentype"),
+     url("../fonts/LatoRegular/LatoRegular.woff") format("woff"),
+     url("../fonts/LatoRegular/LatoRegular.ttf") format("truetype");
+     font-style: normal;
+     font-weight: normal;
+ }
+
+ @font-face {
+     font-family: "LatoBold";
+     src: url("../fonts/LatoBold/LatoBold.eot");
+     src: url("../fonts/LatoBold/LatoBold.eot?#iefix")format("embedded-opentype"),
+     url("../fonts/LatoBold/LatoBold.woff") format("woff"),
+     url("../fonts/LatoBold/LatoBold.ttf") format("truetype");
+     font-style: normal;
+     font-weight: normal;
+ }
+
+ @font-face {
+     font-family: "LatoLight";
+     src: url("../fonts/LatoLight/LatoLight.eot");
+     src: url("../fonts/LatoLight/LatoLight.eot?#iefix")format("embedded-opentype"),
+     url("../fonts/LatoLight/LatoLight.woff") format("woff"),
+     url("../fonts/LatoLight/LatoLight.ttf") format("truetype");
+     font-style: normal;
+     font-weight: normal;
+ }

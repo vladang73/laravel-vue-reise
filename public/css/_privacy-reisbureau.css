@@ -1,0 +1,142 @@
+body {
+  font-family: 'LatoRegular', sans-serif;
+  font-size: 17px;
+  line-height: 1;
+  position: relative;
+  color: #373d42;
+  background-color: #fafafa;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+@font-face {
+  font-family: "LatoRegular";
+  src: url("../fonts/LatoRegular/LatoRegular.eot");
+  src: url("../fonts/LatoRegular/LatoRegular.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoRegular/LatoRegular.woff") format("woff"), url("../fonts/LatoRegular/LatoRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "LatoBold";
+  src: url("../fonts/LatoBold/LatoBold.eot");
+  src: url("../fonts/LatoBold/LatoBold.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoBold/LatoBold.woff") format("woff"), url("../fonts/LatoBold/LatoBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "LatoLight";
+  src: url("../fonts/LatoLight/LatoLight.eot");
+  src: url("../fonts/LatoLight/LatoLight.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLight/LatoLight.woff") format("woff"), url("../fonts/LatoLight/LatoLight.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+.policy {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid #e9e9e9;
+  border-radius: 3px;
+}
+
+.policy__alert {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+  padding: 20px;
+  text-align: center;
+  border-radius: 3px 3px 0 0;
+  background-color: #009fe3;
+}
+
+.policy__content {
+  padding: 20px;
+}
+
+.policy__content img {
+  width: 100%;
+}
+
+.policy-content__block {
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.policy-content-block__title {
+  display: block;
+  font-weight: bold;
+}
+
+.policy-content__block--buttons {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  padding: 20px;
+  font-size: 14px;
+}
+
+.btn-primary, .btn-primary--grey {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 130px;
+  height: 50px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #009fe3;
+  color: #FFF;
+  font-family: "LatoBold";
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary:hover, .btn-primary--grey:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-primary--grey {
+  background-color: #424242;
+  margin-left: 10px;
+}
+
+.social {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  justify-content: center;
+}
+
+.social__item {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: #757575;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.social__item:last-child {
+  margin-right: 0;
+}
+
+.social__item img {
+  width: 16px;
+  height: 16px;
+}

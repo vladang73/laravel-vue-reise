@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Alerts e.g. approaching your limit</title>
+    <link href="{{ url('css/email.css') }}" media="all" rel="stylesheet" type="text/css"/>
+</head>
+
+<body itemscope itemtype="http://schema.org/EmailMessage">
+
+<table class="body-wrap">
+    <tr>
+        <td></td>
+        <td class="container" width="600">
+            <div class="content">
+                <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="content-wrap">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="content-block">
+                                        {% if booking.gender_id == 1 %} {#MAN#}
+                                            Beste heer {{ booking.last_name }},
+                                        {% else %}
+                                            Beste mevrouw {{ booking.last_name }},
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        Wat ontzettend leuk dat wij uw vakantie mogen verzorgen! Hartelijk dank
+                                        hiervoor.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        Wij vinden het belangrijk om onze klanten goed te informeren en daarom
+                                        willen wij u graag vooraf op de hoogte te brengen van het type reis, welke
+                                        voorwaarden er gelden en wie verantwoordelijk is voor de uitvoering van uw
+                                        vakantie.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        Tevens ontvangen wij graag uw toestemming voor het ontvangen van onze
+                                        nieuwsbrief.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        Na het akkoord gaan van de voorwaarden ontvangt u een bevestiging van uw
+                                        akkoordverklaring en hierin kunt u te allen tijde de voorwaarden teruglezen.
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="content-block">
+                                        <br>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="content-block">
+                                        <a href="{{ route('policy', {provider: 'reisbureau', id: booking.id, email: booking.email}) }}"
+                                           class="btn-primary">{{ __('emails.lookInside') }}</a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="content-block">
+                                        <br>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="content-block">
+                                        Met vriendelijke groet,
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        <img src="{{ url('img/logo-reisbureau-third.png') }}" width="500" height="145" alt="">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="content-block">
+                                        Vestiging Harlingen | Voorstraat 25 | 8861 BD HARLINGEN | 0517 417 158
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="content-block">
+                                        Vestiging Bolsward | Achter de Smeden 14 | 8701 KE BOLSWARD | 0515 760 088
+                                    </td>
+                                </tr>
+                                {#<tr>
+                                    <td class="social">
+                                        <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjMycHgiIGhlaWdodD0iMzJweCIgdmlld0JveD0iMCAwIDQ5LjY1MiA0OS42NTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ5LjY1MiA0OS42NTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMjQuODI2LDBDMTEuMTM3LDAsMCwxMS4xMzcsMCwyNC44MjZjMCwxMy42ODgsMTEuMTM3LDI0LjgyNiwyNC44MjYsMjQuODI2YzEzLjY4OCwwLDI0LjgyNi0xMS4xMzgsMjQuODI2LTI0LjgyNiAgICBDNDkuNjUyLDExLjEzNywzOC41MTYsMCwyNC44MjYsMHogTTMxLDI1LjdoLTQuMDM5YzAsNi40NTMsMCwxNC4zOTYsMCwxNC4zOTZoLTUuOTg1YzAsMCwwLTcuODY2LDAtMTQuMzk2aC0yLjg0NXYtNS4wODhoMi44NDUgICAgdi0zLjI5MWMwLTIuMzU3LDEuMTItNi4wNCw2LjA0LTYuMDRsNC40MzUsMC4wMTd2NC45MzljMCwwLTIuNjk1LDAtMy4yMTksMGMtMC41MjQsMC0xLjI2OSwwLjI2Mi0xLjI2OSwxLjM4NnYyLjk5aDQuNTZMMzEsMjUuN3ogICAgIiBmaWxsPSIjNjM2MzYzIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==">
+                                        <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjMycHgiIGhlaWdodD0iMzJweCIgdmlld0JveD0iMCAwIDQ5LjY1MiA0OS42NTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ5LjY1MiA0OS42NTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8Zz4KCQkJPHBhdGggZD0iTTI0LjA4OSwyMC40NTRjLTIuMzA1LTQuMDk3LTQuNzY5LTcuNDM1LTQuOTQ1LTcuNjc0Yy0zLjcxNCwxLjc1NS02LjQ4NSw1LjE3Ni03LjM1MSw5LjMwMSAgICAgQzEyLjE0NCwyMi4wODcsMTcuNjk0LDIyLjE1MywyNC4wODksMjAuNDU0eiIgZmlsbD0iIzYzNjM2MyIvPgoJCQk8cGF0aCBkPSJNMjEuNjM2LDExLjg5NGMtMC4wMTQsMC4wMDYtMC4wMjgsMC4wMDktMC4wNDIsMC4wMTJjMC4wMjUtMC4wMDUsMC4wNC0wLjAwOSwwLjA0LTAuMDA5TDIxLjYzNiwxMS44OTR6IiBmaWxsPSIjNjM2MzYzIi8+CgkJCTxwYXRoIGQ9Ik0zMy42MjIsMTQuODMxYy0yLjM0Ny0yLjA2Ni01LjQyMy0zLjMyMi04Ljc5Ni0zLjMyMmMtMS4wODIsMC0yLjEzMiwwLjEzMi0zLjEzOSwwLjM3NSAgICAgYzAuMiwwLjI2NCwyLjcwMSwzLjU4Nyw0Ljk3OSw3Ljc3MUMzMS42OTIsMTcuNzY5LDMzLjU5LDE0Ljg4MywzMy42MjIsMTQuODMxeiIgZmlsbD0iIzYzNjM2MyIvPgoJCQk8cGF0aCBkPSJNMjcuMDk0LDI3LjAwNmMtNy44NjQsMi43NC0xMC40MjcsOC4yNjctMTAuNDUsOC4zMTVjMi4yNTgsMS43NjQsNS4wOTUsMi44MjUsOC4xODIsMi44MjUgICAgIGMxLjg0NiwwLDMuNjAyLTAuMzc4LDUuMi0xLjA1OGMtMC4xOTctMS4xNjQtMC45NzMtNS4yNDItMi44NDYtMTAuMTFDMjcuMTUxLDI2Ljk4NiwyNy4xMjIsMjYuOTk1LDI3LjA5NCwyNy4wMDZ6IiBmaWxsPSIjNjM2MzYzIi8+CgkJCTxwYXRoIGQ9Ik0yNS43NDgsMjQuOTNjMC4xNzQtMC4wNTcsMC4zNS0wLjExLDAuNTIzLTAuMTU5Yy0wLjMzMi0wLjc1OS0wLjY5Ny0xLjUxNy0xLjA4LTIuMjY1ICAgICBjLTYuODU2LDIuMDUzLTEzLjQzOCwxLjkwMi0xMy42NzIsMS44OThjLTAuMDA1LDAuMTQtMC4wMTEsMC4yNzgtMC4wMTEsMC40MmMwLDMuNDIyLDEuMjkxLDYuNTQxLDMuNDExLDguOTAxbC0wLjAwNS0wLjAwOCAgICAgQzE0LjkxNSwzMy43MjEsMTguNTYsMjcuMjUzLDI1Ljc0OCwyNC45M3oiIGZpbGw9IiM2MzYzNjMiLz4KCQkJPHBhdGggZD0iTTI0LjgyNiwwQzExLjEzNywwLDAsMTEuMTM3LDAsMjQuODI2YzAsMTMuNjg4LDExLjEzNywyNC44MjYsMjQuODI2LDI0LjgyNmMxMy42ODgsMCwyNC44MjYtMTEuMTM4LDI0LjgyNi0yNC44MjYgICAgIEM0OS42NTIsMTEuMTM3LDM4LjUxNiwwLDI0LjgyNiwweiBNNDAuMTA0LDI3Ljk2OWMtMC4yMDQsMS4wMDItMC41MTIsMS45ODctMC45MDgsMi45MzFjLTAuMzkzLDAuOTI0LTAuODc1LDEuODE1LTEuNDM4LDIuNjQ5ICAgICBjLTAuNTU4LDAuODI0LTEuMTk5LDEuNjAyLTEuOTAxLDIuMzA4Yy0wLjcwNSwwLjcwNC0xLjQ4LDEuMzQ0LTIuMzA4LDEuOTAxYy0wLjgzNCwwLjU2My0xLjcyNywxLjA0Ny0yLjY0OSwxLjQzOCAgICAgYy0wLjk0MSwwLjM5Ny0xLjkyOSwwLjcwNC0yLjkzMSwwLjkxYy0xLjAyNiwwLjIxMS0yLjA4NCwwLjMxNS0zLjE0MSwwLjMxNWMtMS4wNTgsMC0yLjExMy0wLjEwNC0zLjE0MS0wLjMxNSAgICAgYy0xLjAwMi0wLjIwNi0xLjk4OS0wLjUxMy0yLjkzMS0wLjkxYy0wLjkyNS0wLjM5Mi0xLjgxNi0wLjg3NC0yLjY1LTEuNDM4Yy0wLjgyNS0wLjU2LTEuNjAyLTEuMTk3LTIuMzA2LTEuOTAxICAgICBjLTAuNzA2LTAuNzA2LTEuMzQ2LTEuNDgtMS45MDMtMi4zMDhjLTAuNTYzLTAuODM0LTEuMDQ3LTEuNzI4LTEuNDM4LTIuNjQ5Yy0wLjM5Ny0wLjk0MS0wLjcwNS0xLjkyOS0wLjkxLTIuOTMxICAgICBjLTAuMjEtMS4wMjUtMC4zMTYtMi4wODQtMC4zMTYtMy4xNDRjMC0xLjA1NywwLjEwNi0yLjExMywwLjMxNi0zLjEzOWMwLjIwNS0xLjAwMiwwLjUxMi0xLjk4OCwwLjkxMS0yLjkzMiAgICAgYzAuMzkxLTAuOTI1LDAuODc0LTEuODE1LDEuNDM2LTIuNjQ3YzAuNTU5LTAuODI1LDEuMTk4LTEuNjAzLDEuOTAzLTIuMzA3YzAuNzA1LTAuNzA2LDEuNDgtMS4zNDYsMi4zMDctMS45MDQgICAgIGMwLjgzNC0wLjU2MywxLjcyNi0xLjA0NiwyLjY0OS0xLjQzOGMwLjk0Mi0wLjM5NiwxLjkzLTAuNzA1LDIuOTMxLTAuOTA4YzEuMDI4LTAuMjExLDIuMDg0LTAuMzE4LDMuMTQxLTAuMzE4ICAgICBjMS4wNTgsMCwyLjExNCwwLjEwNywzLjE0MiwwLjMxOGMxLjAwMiwwLjIwMywxLjk4NywwLjUxMSwyLjkzMSwwLjkwOGMwLjkyNiwwLjM5MiwxLjgxNSwwLjg3MywyLjY0OSwxLjQzOCAgICAgYzAuODI0LDAuNTU5LDEuNjAzLDEuMTk5LDIuMzA4LDEuOTA0YzAuNzA0LDAuNzA1LDEuMzQ1LDEuNDgxLDEuOTAxLDIuMzA3YzAuNTYzLDAuODMzLDEuMDQ3LDEuNzI0LDEuNDM4LDIuNjQ3ICAgICBjMC4zOTYsMC45NDMsMC43MDUsMS45MywwLjkwOSwyLjkzMmMwLjIxMSwxLjAyNSwwLjMxNSwyLjA4MiwwLjMxNSwzLjEzOUM0MC40MiwyNS44ODUsNDAuMzE0LDI2Ljk0LDQwLjEwNCwyNy45Njl6IiBmaWxsPSIjNjM2MzYzIi8+CgkJCTxwYXRoIGQ9Ik0yOS42NzYsMjYuMzZjMS43NDgsNC44LDIuNDU3LDguNzA5LDIuNTkyLDkuNTE0YzIuOTkyLTIuMDIxLDUuMTE1LTUuMjIyLDUuNzA5LTguOTMzICAgICBDMzcuNzAxLDI2Ljg1LDMzLjk3NSwyNS42NzQsMjkuNjc2LDI2LjM2eiIgZmlsbD0iIzYzNjM2MyIvPgoJCQk8cGF0aCBkPSJNMjcuNjg5LDIxLjYzN2MwLjMxMiwwLjYzNSwwLjYwOCwxLjI4LDAuODg3LDEuOTMyYzAuMSwwLjIzLDAuMTkyLDAuNDYsMC4yODcsMC42ODggICAgIGM0LjU3Ni0wLjU3NCw5LjA4NCwwLjM5Niw5LjI3NCwwLjQzN2MtMC4wMjgtMy4xNjEtMS4xNi02LjA1OS0zLjAyNi04LjMyNkMzNS4wODgsMTYuNDAzLDMyLjk1MSwxOS40OTEsMjcuNjg5LDIxLjYzN3oiIGZpbGw9IiM2MzYzNjMiLz4KCQk8L2c+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="/>
+                                        <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjMycHgiIGhlaWdodD0iMzJweCIgdmlld0JveD0iMCAwIDQ5LjY1MiA0OS42NTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ5LjY1MiA0OS42NTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMjQuODI2LDBDMTEuMTM3LDAsMCwxMS4xMzcsMCwyNC44MjZjMCwxMy42ODgsMTEuMTM3LDI0LjgyNiwyNC44MjYsMjQuODI2YzEzLjY4OCwwLDI0LjgyNi0xMS4xMzgsMjQuODI2LTI0LjgyNiAgICBDNDkuNjUyLDExLjEzNywzOC41MTYsMCwyNC44MjYsMHogTTM1LjkwMSwxOS4xNDRjMC4wMTEsMC4yNDYsMC4wMTcsMC40OTQsMC4wMTcsMC43NDJjMCw3LjU1MS01Ljc0NiwxNi4yNTUtMTYuMjU5LDE2LjI1NSAgICBjLTMuMjI3LDAtNi4yMzEtMC45NDMtOC43NTktMi41NjVjMC40NDcsMC4wNTMsMC45MDIsMC4wOCwxLjM2MywwLjA4YzIuNjc4LDAsNS4xNDEtMC45MTQsNy4wOTctMi40NDYgICAgYy0yLjUtMC4wNDYtNC42MTEtMS42OTgtNS4zMzgtMy45NjljMC4zNDgsMC4wNjYsMC43MDcsMC4xMDMsMS4wNzQsMC4xMDNjMC41MjEsMCwxLjAyNy0wLjA2OCwxLjUwNi0wLjE5OSAgICBjLTIuNjE0LTAuNTI0LTQuNTgzLTIuODMzLTQuNTgzLTUuNjAzYzAtMC4wMjQsMC0wLjA0OSwwLjAwMS0wLjA3MmMwLjc3LDAuNDI3LDEuNjUxLDAuNjg1LDIuNTg3LDAuNzE0ICAgIGMtMS41MzItMS4wMjMtMi41NDEtMi43NzMtMi41NDEtNC43NTVjMC0xLjA0OCwwLjI4MS0yLjAzLDAuNzczLTIuODc0YzIuODE3LDMuNDU4LDcuMDI5LDUuNzMyLDExLjc3Nyw1Ljk3MiAgICBjLTAuMDk4LTAuNDE5LTAuMTQ3LTAuODU0LTAuMTQ3LTEuMzAzYzAtMy4xNTUsMi41NTgtNS43MTQsNS43MTMtNS43MTRjMS42NDQsMCwzLjEyNywwLjY5NCw0LjE3MSwxLjgwNCAgICBjMS4zMDMtMC4yNTYsMi41MjMtMC43MywzLjYzLTEuMzg3Yy0wLjQzLDEuMzM1LTEuMzMzLDIuNDU0LTIuNTE2LDMuMTYyYzEuMTU3LTAuMTM4LDIuMjYxLTAuNDQ0LDMuMjgyLTAuODk5ICAgIEMzNy45ODcsMTcuMzM0LDM3LjAxOCwxOC4zNDEsMzUuOTAxLDE5LjE0NHoiIGZpbGw9IiM2MzYzNjMiLz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K"/>
+                                    </td>
+                                </tr>#}
+                            </table>
+
+                    </tr>
+                </table>
+                <div class="footer">
+                    <table width="100%">
+                        <!--<tr>
+                          <td class="aligncenter content-block"><a href="http://www.mailgun.com">Unsubscribe</a> from these alerts.</td>
+                        </tr>-->
+                    </table>
+                </div>
+            </div>
+        </td>
+        <td></td>
+    </tr>
+</table>
+
+</body>
+</html>

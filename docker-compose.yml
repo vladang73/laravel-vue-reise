@@ -1,0 +1,59 @@
+version: "3.3"
+
+services:
+  travel-nginx:
+    image: nginx:alpine
+    container_name: "travel-nginx"
+    ports:
+      - "3180:80"
+    volumes:
+      - ./:/current
+      - ./_docker/routing/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./_docker/routing/fastcgi_params:/etc/nginx/fastcgi_params:ro
+      - ./_docker/routing/conf.d/:/etc/nginx/conf.d:ro
+    networks:
+      - travel-network
+
+  travel-fpm:
+    image: ogorbunov/php:7.2-fpm-mysql
+    container_name: "travel-fpm"
+    volumes:
+      - ./:/current
+      - ./_docker/php/php.ini:/usr/local/etc/php/php.ini:ro
+      - ./_docker/php/php-fpm.conf:/usr/local/etc/php-fpm.conf:ro
+    networks:
+      - travel-network
+    environment:
+      APP_ENV: local
+      APP_DEBUG: 1
+      APP_KEY: "base64:aBwyVm3fMLq+iLr1pyXqSTj+udugfKH3ZLAeWsb6oNs="
+      DB_CONNECTION: mysql
+      DB_HOST: travel-db
+      DB_PORT: 3306
+      DB_USERNAME: travel
+      DB_PASSWORD: travel
+      DB_DATABASE: travel
+
+  travel-db:
+    image: mysql:5.7
+    container_name: "travel-db"
+    ports:
+      - "33306:3306"
+    volumes:
+      - ./database/dumps/travel-25-12-2018.sql.gz:/docker-entrypoint-initdb.d/init.sql.gz
+      - travel-db-data:/var/lib/mysql
+    networks:
+      - travel-network
+    environment:
+      MYSQL_USER: travel
+      MYSQL_PASSWORD: travel
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: travel
+
+volumes:
+  travel-db-data:
+  travel-code:
+
+networks:
+  travel-network:
+

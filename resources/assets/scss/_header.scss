@@ -1,0 +1,349 @@
+ /* -------------HEADER------------- */
+
+ .navbar {
+     display: flex;
+
+     padding: 20px 0;
+
+     border-bottom: 1px solid $grey;
+     background-color: #fff;
+
+     align-items: stretch;
+     justify-content: space-between;
+     flex-wrap: nowrap;
+     &.fixed-top {
+         position: relative;
+     }
+
+     @media (min-width:768px) {
+         padding: 0;
+
+         border-bottom: none;
+
+         justify-content: flex-start;
+         &.fixed-top {
+             position: fixed;
+         }
+     }
+ }
+
+ .navbar-toggler {
+     display: flex;
+     flex-direction: column;
+
+     height: 40px;
+     margin-left: 25px;
+     padding: 0;
+
+     outline: none;
+
+     justify-content: space-around;
+     align-items: center;
+     align-self: center;
+
+     span {
+         display: block;
+
+         width: 30px;
+         height: 4px;
+
+         background-color: black;
+         &:nth-child(2) {
+             margin: 5px 0;
+         }
+     }
+ }
+
+ .logo {
+     display: none;
+     svg {
+         @media (min-width: 768px) {
+             width: 80px;
+             height: 55px;
+         }
+     }
+
+     @media (min-width:768px) {
+         display: flex;
+
+         max-width: 110px;
+         max-height: 94px;
+         padding: 20px 0;
+
+         background-color: #fff;
+
+         justify-content: center;
+     }
+ }
+
+ .header-wrap {
+     display: flex;
+
+     @media (min-width: 768px) {
+         padding: 0;
+         border-bottom: 1px solid $grey;
+     }
+ }
+
+ .search {
+     display: none;
+
+     width: 100%;
+     max-width: 500px;
+
+     align-items: center;
+
+
+     @media (min-width: 992px) {
+         display: flex;
+
+         margin-left: 39px;
+     }
+ }
+
+ .search__icon {
+     display: inline-block;
+
+     width: 20px;
+     height: 20px;
+     margin-right: 5px;
+
+     background-image: url('../img/search_icon.png');
+     background-repeat: no-repeat;
+     background-size: contain;
+ }
+
+ .search__input {
+     border: none;
+     outline: none;
+
+     &:focus::-webkit-input-placeholder {
+         font-size: 20px;
+
+         color: transparent;
+     }
+     &:focus::-moz-placeholder {
+         font-size: 20px;
+
+         color: transparent;
+     }
+     &:focus:-moz-placeholder {
+         font-size: 20px;
+
+         color: transparent;
+     }
+     &:focus:-ms-input-placeholder {
+         font-size: 20px;
+
+         color: transparent;
+     }
+     &::-webkit-input-placeholder {
+         font-family: 'LatoRegular';
+         font-size: 20px;
+
+         color: $grey;
+     }
+     &::-moz-placeholder {
+         font-family: 'LatoRegular';
+         font-size: 20px;
+
+         color: $grey;
+     }
+     &:-moz-placeholder {
+         font-family: 'LatoRegular';
+         font-size: 20px;
+
+         color: $grey;
+     }
+     &:focus:-ms-input-placeholder {
+         font-family: 'LatoRegular';
+         font-size: 20px;
+
+         color: $grey;
+     }
+ }
+
+
+ .notify {
+     position: relative;
+
+     display: flex;
+     display: none;
+
+     max-width: 66px;
+     margin-right: 20px;
+
+     align-items: center;
+
+     @media (min-width: 992px) {
+         display: flex;
+     }
+
+     svg {
+         width: 100%;
+     }
+ }
+
+ .notify__point {
+     position: absolute;
+     top: 30px;
+     right: 15px;
+
+     width: 11px;
+     height: 11px;
+
+     border-radius: 50%;
+     background-color: $red;
+ }
+
+ .profile {
+     display: flex;
+     position: relative;
+
+     max-width: 70px;
+     margin-left: auto;
+     padding: 0;
+
+     align-items: center;
+
+     @media (min-width: 768px) {
+         max-width: 176px;
+         margin-right: 30px;
+     }
+     @media (min-width:992px) {
+         margin-left: unset;
+     }
+ }
+
+ .profile__name {
+     display: none;
+
+     width: 100%;
+     margin-right: 25px;
+     @media (min-width: 768px) {
+         display: block;
+     }
+ }
+
+ .profile__dropdown {
+     display: flex;
+
+     width: 100%;
+     &:hover {
+         cursor: pointer;
+     }
+     @media (min-width: 768px) {
+         justify-content: space-between;
+     }
+ }
+
+ .profile__arrow {
+     display: flex;
+
+     width: 15px;
+     margin-left: 10px;
+
+     transform: rotate(90deg);
+
+     align-items: center;
+ }
+
+ .profile__popup {
+     position: absolute;
+     //display: none;
+     width: 265px;
+     max-width: 265px;
+     background-color: #fff;
+     border: 1px solid $grey;
+     top: 55px;
+     font-family: "LatoRegular";
+     right: 0px;
+
+     &:before {
+         position: absolute;
+         pointer-events: none;
+         border: solid transparent;
+         content: '';
+         height: 0;
+         width: 0;
+         bottom: 100%;
+         right: 47px;
+         border-width: 10px;
+         margin: 0 -6px;
+         border-bottom-color: $grey;
+         @media (min-width: 768px) {
+             right: 53px;
+         }
+     }
+     &:after {
+         position: absolute;
+         pointer-events: none;
+         border: solid transparent;
+         content: '';
+         height: 0;
+         width: 0;
+         bottom: 100%;
+         right: 47px;
+         border-width: 9px;
+         margin: 0 -5px;
+         border-bottom-color: #fff;
+         @media (min-width: 768px) {
+             right: 53px;
+         }
+     }
+     @media (min-width:768px) {
+         top: 80px;
+     }
+ }
+
+
+ .profile-popup__item {
+     padding: 10px 20px;
+     font-size: 15px;
+     color: $grey;
+     display: flex;
+     align-items: center;
+     & span {
+         display: inline-block;
+         width: 25px;
+         height: 25px;
+         margin-right: 25px;
+     }
+     &:hover {
+         cursor: pointer;
+         color: #373d42;
+         background-color: #eceff1;
+         .svg-c-l-g {
+             fill: #373d42;
+         }
+     }
+ }
+
+ .arr-down {
+     width: 100%;
+ }
+
+ .setting {
+     display: none;
+
+     max-width: 107px;
+
+     border-left: 1px solid $grey;
+
+     align-items: center;
+     justify-content: center;
+     @media (min-width: 768px) {
+         display: flex;
+     }
+     &:hover {
+         cursor: pointer;
+         .svg-c-l-g {
+             fill: $blue;
+         }
+     }
+ }
+
+ .setting__img {
+     width: 40px;
+ }
+ /* ------------- HEADER END -------------*/

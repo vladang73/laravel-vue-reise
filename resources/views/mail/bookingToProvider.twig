@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Alerts e.g. approaching your limit</title>
+    <link href="{{ url('css/email.css') }}" media="all" rel="stylesheet" type="text/css"/>
+</head>
+
+<body itemscope itemtype="http://schema.org/EmailMessage">
+
+<table class="body-wrap">
+    <tr>
+        <td></td>
+        <td class="container" width="600">
+            <div class="content">
+                <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="content-wrap">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <img src="{{ url('img/logo-reisbureau.png') }}" width="500" height="145" alt="">
+                                <tr>
+                                    <td class="content-block">
+                                        Nieuwe bestelling aangekomen
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        Gegevens:<br>
+                                        Type reis: {{ booking.holiday.name }}, <br>
+                                        Aanbieder:
+                                        {% for agency in booking.agencies %}
+                                            {{ agency.name }} &nbsp;
+                                        {% endfor %}
+                                        <br>
+                                        Achternaam: {{ booking.last_name }}, <br>
+                                        Geslacht: {{ booking.gender.name }}, <br>
+                                        Email: {{ booking.email }}
+                                    </td>
+                                </tr>
+                            </table>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td></td>
+    </tr>
+</table>
+
+</body>
+</html>

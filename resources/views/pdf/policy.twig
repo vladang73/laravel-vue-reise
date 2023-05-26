@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Alerts e.g. approaching your limit</title>
+    <link href="{{ url('css/_privacy-reisbureau.css') }}" media="all" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+
+<div class="policy">
+    <div class="policy__content">
+        <img src="{{ url('img/logo-reisbureau.png') }}" width="500" height="145" alt="">
+        <form action="#" method="post">
+            <div class="policy-content__block">
+                {% if booking.gender_id == 1 %} {#MAN#}
+                    Beste heer {{ booking.last_name }},
+                {% else %}
+                    Beste mevrouw {{ booking.last_name }},
+                {% endif %}
+            </div>
+            <div class="policy-content__block">
+                <span class="policy-content-block__title">{#Type reis#}{{ text.first_title }}</span>
+                {{ text.first_paragraph|raw }}<br>
+                <ul style="padding-left: 40px;list-style: disc;">
+                    {% for agency in booking.agencies %}
+                        <li><b>{{ agency.name }}</b></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="policy-content__block">
+                <span class="policy-content-block__title">{{ text.second_title }}</span>
+                {{ text.second_paragraph|raw }}
+            </div>
+            <ul>
+                {% for _agency in booking.agencies %}
+                    {% for document in _agency.documents %}
+                        <li>
+                            <div class="policy-content__block">
+                                <input type="checkbox" name="agencyConditions[]" class="required" onclick="unlockButton()">
+                                Ja, ik ga akkoord met de algemene voorwaarden van {{ _agency.name }}.
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+                {% if booking.own_conditions_apply %}
+                    <li>
+                        <div class="policy-content__block">
+                            <input type="checkbox" name="conditionsFirm" class="required" onclick="unlockButton()">
+                            Ja, ik ga akkoord met de algemene voorwaarden van Reisbureau Friesland
+                        </div>
+                    </li>
+                {% endif %}
+                {% if booking.anvr_conditions_apply %}
+                    <li>
+                        <div class="policy-content__block">
+                            <input type="checkbox" name="conditionsFirm" class="required" onclick="unlockButton()">
+                            Ja, ik ga akkoord met de ANVR voorwaarden
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
+            <div class="policy-content__block">
+                <span class="policy-content-block__title">{{ text.third_title }}</span>
+                {{ text.third_paragraph|raw }}
+            </div>
+            <div class="policy-content__block">
+                <div>
+                    <input type="checkbox" name="firmPolicy" class="required"
+                           onclick="unlockButton()"> Ja, ik heb kennis genomen van de Privacy Policy van Reisbureau Friesland
+                    en ga hiermee akkoord.
+                </div>
+                <div>
+                    <input type="checkbox" name="wantNews"> Ja, ik blijf graag op de hoogte en zou me willen aanmelden voor de nieuwsbrief.
+                </div>
+                <div>
+                    <input type="checkbox" name="newsOnEmail"> Ja, ik blijf graag op de hoogte en zou graag directe post ontvangen.
+                </div>
+            </div>
+            <div class="policy-content__block">
+                {{ text.epilogue|raw }}
+            </div>
+            <div class="policy-content__block">
+                {% if booking.location_id == 1 %}
+                    Bolsward, {{ "now"|date("d-m-Y H:i:s") }}
+                {% elseif booking.location_id == 2 %}
+                    Harlingen, {{ "now"|date("d-m-Y H:i:s") }}
+                {% endif %}
+            </div>
+            <div class="policy-content__block">
+                <div style="float:right; display: inline-block; margin: 0 10px;">
+                    ({{ booking.last_name }})
+                </div>
+                <div style="float: right; display: inline-block; width: 150px; height: 30px; border-bottom: 1px solid black;">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url('css/login.css') }}">
+
+    <title>Login</title>
+</head>
+
+<body>
+<div class="bg-form">
+    <div class="bg-img"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="white-bg"></div>
+            <div class=" form-wrap">
+                <form action="{{ route('change-pass', {'hash': hash}) }}" method="post" class="form">
+                    {{ csrf_field() }}
+                    <div class="logo-wrap">
+                        <img src="{{ url('img/logo.png') }}" alt="logo" class="logo-img">
+                    </div>
+
+                            <div class="card-title d-flex flex-column align-items-center justify-content-center">
+                                <img src="{{ url('images/logo.png') }}" alt="" width="97">
+                                {{ trans('auth.recovery') }}
+                            </div>
+
+                            <div class="form-row m-2">
+                                <div class="col">
+                                    <div class="input">
+                                        <input class="password {{ errors.has('password') ? 'input__field--invalid' : '' }}"
+                                               name="password" id="password" type="password"
+                                               onblur="(value) ? this.classList.add('focused') : this.classList.remove('focused')"
+                                               placeholder="{{ trans('auth.new_password') }}">
+                                        {% if (errors.has('password')) %}
+                                            <span class="input__error-text">{{ errors.first('password') }}</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row m-2">
+                                <div class="col">
+                                    <div class="input">
+                                        <input class="password  {{ errors.has('password_confirmation') ? 'input__field--invalid' : '' }}"
+                                               name="password_confirmation" id="password_confirmation" type="password"
+                                               onblur="(value) ? this.classList.add('focused') : this.classList.remove('focused')"
+                                               placeholder="{{ trans('auth.password_confirmation') }}" >
+                                        {% if (errors.has('password_confirmation')) %}
+                                            <span class="input__error-text">{{ errors.first('password_confirmation') }}</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                    <div class="buttons">
+                        <button class="login" type="submit" name="action">
+                            {{ trans('auth.submit') }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

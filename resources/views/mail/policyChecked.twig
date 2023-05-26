@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Alerts e.g. approaching your limit</title>
+    <link href="{{ url('css/email.css') }}" media="all" rel="stylesheet" type="text/css"/>
+</head>
+
+<body itemscope itemtype="http://schema.org/EmailMessage">
+
+<table class="body-wrap">
+    <tr>
+        <td></td>
+        <td class="container" width="600">
+            <div class="content">
+                <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="content-wrap">
+
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="content-block">
+                                        {% if data['booking'].gender_id == 1 %}
+                                            Beste heer {{ data['booking'].last_name }},
+                                        {% else %}
+                                            Beste mevrouw {{ data['booking'].last_name }},
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        Bedankt voor uw medewerking! Wij gaan voor u een {{ data['booking'].holiday.name }} reserveren.
+                                        {{ data['booking'].provider.name }} is voor u de
+                                        {{ data['booking'].holiday.id == 4 ? 'Reisorganisator' : (
+                                        data['booking'].holiday.id == 5 ? 'Doorverkoper' : data['booking'].holiday.name
+                                        ) }}. De aanbieders voor de reisdienst(en) zijn: <br><br>
+
+                                        <b>Aanbieder</b><br><br>
+                                        <ul>
+                                            {% for agency in data['booking'].agencies %}
+                                                <li><b>{{ agency.name }}</b></li>
+                                            {% endfor %}
+                                        </ul>
+
+                                        Op deze reis zijn de navolgende voorwaarden van toepassing waar u zojuist akkoord mee bent gegaan.
+                                        Voor alle volledigheid kan u deze hier nogmaals nalezen:<br>
+
+                                        <ul>
+                                            {% for agency in data['booking'].agencies %}
+                                                {% for document in agency.documents %}
+                                                    {% if data.data['agencyCondition'~document.id] %}
+                                                        <li><a href="{{ document.url }}" target="_blank">{{ document.name }}</a> van {{ agency.name }}</li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                            {% if data['booking'].own_conditions_apply %}
+                                                {% if data['booking'].provider_id == 1 %}
+                                                    <li><a href="https://www.preisdaler.nl/algemene-voorwaarden-preisdaler"
+                                                                                target="_blank">
+                                                    Algemene voorwaarden</a> van Preisdaler.nl</li>
+                                                {% else %}
+                                                    <li><a href="https://www.reisbureaufriesland.nl/algemene-voorwaarden-0"
+                                                                                target="_blank">
+                                                    Algemene voorwaarden</a> van Reisbureau Friesland</li>
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if data['booking'].anvr_conditions_apply %}
+                                                {% if data['booking'].provider_id == 1 %}
+                                                    <li>
+                                                    <a target="_blank" href="https://www.preisdaler.nl/anvr-voorwaarden">ANVR voorwaarden</a></li>
+                                                {% else %}
+                                                    <li>
+                                                    <a target="_blank" href=" https://www.reisbureaufriesland.nl/anvr-voorwaarden">ANVR
+                                                        voorwaarden</a></li>
+                                                {% endif %}
+                                            {% endif %}
+                                        </ul><br>
+
+                                        <b>Gegevens</b><br><br>
+
+                                        Wij vragen van u diverse gegevens welke wij benodigd zijn voor het boeken van de reis.
+                                        Deze gegevens bewaren wij zoals omschreven in onze.
+                                        U heeft kennis genomen van onze <a href="{{ route('policy', {provider: data['booking'].provider.name, id: data['booking'].id, email: data['booking'].email}) }}"
+                                                                                          >Privacy Policy</a>. en u bent hiermee akkoord gegaan.<br><br>
+
+                                        {% if data.data['wantNews'] or data.data['newsOnEmail'] %}
+                                        <b>Nieuwsbrief</b><br><br>
+
+                                        U heeft aangegeven op de navolgende wijze op de hoogte te willen blijven:<br>
+
+                                        {{ data.data['wantNews'] ? '•  Ik blijf graag op de hoogte en zou graag een nieuwsbrief ontvangen.' : '' }}<br>
+
+                                        {{ data.data['newsOnEmail'] ? '•  Ik blijf graag op de hoogte en zou graag directe post ontvangen.' : '' }}<br><br><br>
+                                        {% endif %}
+
+                                        Wij danken u hartelijk voor het vertrouwen in {{ data['booking'].provider.name }}!<br>
+                                        <br>
+                                        {{ data['booking'].location_id == 1 ? 'Bolsward' : 'Harlingen'}}, {{ "now"|date("d-m-Y,  H:i:s") }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        {% if data['booking'].provider_id == 1 %}
+                                            <img src="{{ url('img/logo-preisdaler.png') }}" width="500" height="145" alt="">
+                                        {% else %}
+                                            <img src="{{ url('img/logo-reisbureau.png') }}" width="500" height="145" alt="">
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        Vestiging Harlingen | Voorstraat 25 | 8861 BD HARLINGEN | 0517 417 158
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="content-block">
+                                        Vestiging Bolsward | Achter de Smeden 14 | 8701 KE BOLSWARD | 0515 760 088
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <div class="footer">
+                    <table width="100%">
+                        <!--<tr>
+                          <td class="aligncenter content-block"><a href="http://www.mailgun.com">Unsubscribe</a> from these alerts.</td>
+                        </tr>-->
+                    </table>
+                </div>
+            </div>
+        </td>
+        <td></td>
+    </tr>
+</table>
+
+</body>
+</html>

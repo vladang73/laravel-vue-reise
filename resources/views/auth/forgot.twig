@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url('css/login.css') }}">
+
+    <title>Login</title>
+</head>
+
+<body>
+<div class="bg-form">
+    <div class="bg-img"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="white-bg"></div>
+            <div class=" form-wrap">
+                <form action="{{ route('forgot') }}" method="post" class="form form--forgot">
+                    {{ csrf_field() }}
+                    <div class="forgot-wrap">
+                        <div class="error ">
+                            <div class="error__content">
+                                <span class="error__icon error__icon--unlock"></span> <span class="error__text">{{ __('auth.enter_email') }}</span>
+                            </div>
+                            <div class="error__arrow"></div>
+                        </div>
+                    </div>
+                    <input class="email {{ errors.has('email') ? 'input__field--invalid' : '' }}" name="email" id="email" type="email" value="{{ old('email')|default('') }}"
+                           onblur="(value) ? this.classList.add('focused') : this.classList.remove('focused')" placeholder="Email">
+                    {% if (errors.has('email')) %}
+                        <span class="input__error-text">{{ errors.first('email') }}</span>
+                    {% endif %}
+                    <button type="submit" class="login">{{ __('auth.send_password') }}</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+-->
+<script src="{{ url('js/login.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url('css/login.css') }}">
+
+    <title>Login</title>
+</head>
+
+<body>
+<div class="bg-form">
+    <div class="bg-img"></div>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row flex-column">
+                            <div class="card-title d-flex flex-column align-items-center justify-content-center">
+                                <img src="{{ url('images/logo.png') }}" alt="" width="97">
+                                {{ trans('auth.forgot') }}
+                            </div>
+                        </div>
+                        <div class="row border border-bottom-0 border-left-0 border-right-0">
+                            <div class="col justify-content-center mt-2">
+                                {{ trans('auth.confirmation_sent') }}
+                                <p style="text-align: center; margin-top: 5px;">
+                                    <a href="{{ url('auth/login') }}">{{ trans('auth.back_to_login') }}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

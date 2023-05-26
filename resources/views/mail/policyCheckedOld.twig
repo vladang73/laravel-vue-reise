@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Alerts e.g. approaching your limit</title>
+    <link href="{{ url('css/email.css') }}" media="all" rel="stylesheet" type="text/css"/>
+</head>
+
+<body itemscope itemtype="http://schema.org/EmailMessage">
+
+<table class="body-wrap">
+    <tr>
+        <td></td>
+        <td class="container" width="600">
+            <div class="content">
+                <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="alert alert-warning">
+                            Gebruiker reageerde op gebruikersovereenkomst
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content-wrap">
+                            <ul>
+                                {% for agency in data['booking'].agencies %}
+                                        <li>Algemene voorwaarden van {{ agency.name }} - ben het eens</li>
+                                {% endfor %}
+                                <li>Algemene voorwaarden van {{ data['booking'].provider.name }} - ben het eens </li>
+                                <li>Privacy policy van {{ data['booking'].provider.name }} - ben het eens</li>
+                                <li>
+                                    Graag op de hoogte en zou graag een nieuwsbrief ontvangen -
+                                    {% if data.data['wantNews'] == 0 %}
+                                        niet mee eens
+                                    {% else %}
+                                        ben het eens
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    Graag op de hoogte en zou graag directe post ontvangen -
+                                    {% if data.data['newsOnEmail'] == 0 %}
+                                        niet mee eens
+                                    {% else %}
+                                        ben het eens
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+                <div class="footer">
+                    <table width="100%">
+                        <!--<tr>
+                          <td class="aligncenter content-block"><a href="http://www.mailgun.com">Unsubscribe</a> from these alerts.</td>
+                        </tr>-->
+                    </table>
+                </div>
+            </div>
+        </td>
+        <td></td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Alerts e.g. approaching your limit</title>
+    <link href="{{ url('css/_privacy-reisbureau.css') }}" media="all" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+
+<div class="policy">
+    <div class="policy__alert" id="main_header">
+        Ga akkoord door op de button aan de onderzijde van de pagina te klikken.
+    </div>
+    <div class="policy__content" id="main">
+        <img src="{{ url('img/logo-reisbureau.png') }}" width="500" height="145" alt="">
+        <form action="#" method="post">
+            <div class="policy-content__block">
+                {% if booking.gender_id == 1 %} {#MAN#}
+                    Beste heer {{ booking.last_name }},
+                {% else %}
+                    Beste mevrouw {{ booking.last_name }},
+                {% endif %}
+            </div>
+            <div class="policy-content__block">
+                <span class="policy-content-block__title">{{ text.first_title }}</span>
+                <p>{{ text.first_paragraph|raw }}</p>
+                <ul style="padding-left: 40px;list-style: disc;">
+                    {% for agency in booking.agencies %}
+                        <li><b>{{ agency.name }}</b></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="policy-content__block">
+                <span class="policy-content-block__title">{{ text.second_title }}</span>
+                <p>{{ text.second_paragraph|raw }}</p>
+            </div>
+            <ul>
+                {% for _agency in booking.agencies %}
+                    {% for document in _agency.documents %}
+                        <li>
+                            <div class="policy-content__block">
+                                <input type="checkbox" name="agencyCondition{{document.id}}" class="required"
+                                       onclick="unlockButton()">
+                                Ja, ik ga akkoord met de <a href="{{ document.url }}" target="_blank">algemene
+                                    voorwaarden</a> van {{ _agency.name }}.
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+
+                {% if booking.own_conditions_apply %}
+                    <li>
+                        <div class="policy-content__block">
+                            <input type="checkbox" name="conditionsFirm" class="required" onclick="unlockButton()">
+                            Ja, ik ga akkoord met de <a href="https://www.reisbureaufriesland.nl/algemene-voorwaarden-0"
+                                                        target="_blank">
+                                algemene voorwaarden</a> van Reisbureau Friesland
+                        </div>
+                    </li>
+                {% endif %}
+                {% if booking.anvr_conditions_apply %}
+                    <li>
+                        <div class="policy-content__block">
+                            <input type="checkbox" name="conditionsANVR" class="required" onclick="unlockButton()">
+                            Ja, ik ga akkoord met de
+                            <a target="_blank" href=" https://www.reisbureaufriesland.nl/anvr-voorwaarden">ANVR
+                                voorwaarden</a>
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
+            {#<input type="checkbox" name="conditionsFirm" class="required" onclick="unlockButton()"> Ja, ik ga
+            akkoord met de <a href="https://www.reisbureaufriesland.nl/privacy-policy" target="_blank">algemene
+                voorwaarden</a> van Reisbureau Friesland en de <a
+                    href="https://www.reisbureaufriesland.nl/algemene-voorwaarden-reisbureau-friesland"
+                    target="_blank"> ANVR voorwaarden</a>.#}
+
+            <div class="policy-content__block">
+                <span class="policy-content-block__title">{{ text.third_title }}</span>
+                <p>{{ text.third_paragraph|raw }}</p>
+            </div>
+            <div class="policy-content__block">
+                <input type="checkbox" name="firmPolicy" class="required"
+                       onclick="unlockButton()"> Ja, ik heb
+                kennis genomen van de <a href="https://www.reisbureaufriesland.nl/privacy-policy" target="_blank">Privacy
+                    Policy</a> van Reisbureau Friesland en ga hiermee akkoord.</br>
+                </br>
+                <input type="checkbox" name="wantNews"> Ja, ik blijf graag op de hoogte
+                en zou me willen aanmelden voor de nieuwsbrief.</br>
+                </br>
+
+                <input type="checkbox" name="newsOnEmail"> Ja, ik blijf graag op de hoogte
+                en zou graag directe
+                post ontvangen.
+            </div>
+            <div class="policy-content__block">
+                {{ text.epilogue|raw }}
+            </div>
+            <div class="policy-content__block">
+                {% if booking.location_id == 1 %}
+                    Bolsward, {{ "now"|date("m.d.Y") }}
+                {% elseif booking.location_id == 2 %}
+                    Harlingen, {{ "now"|date("m.d.Y") }}
+                {% endif %}
+            </div>
+            <div class="policy-content__block--buttons">
+                <button type="submit" id="accept" class="btn-primary--grey non-active" disabled>
+                    Accepteer aangevinkt
+                </button>
+                <button type="button" class="btn-primary" id="check-all">
+                    Accepteer alles
+                </button>
+            </div>
+            <div class="policy-content__block">
+                Meer informatie over de AVG is hier te vinden. (website <a
+                        href="https://www.autoriteitpersoonsgegevens.nl/"
+                        target="_blank"> Autoriteit Persoonsgegevens)</a>
+            </div>
+        </form>
+    </div>
+    <div class="policy__content" id="thankyou" style="display: none;">
+        <img src="{{ url('img/logo-reisbureau.png') }}" width="500" height="145" alt="">
+        Bedankt!
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+
+    function unlockButton() {
+        let count = 0;
+        let checkedCount = 0;
+        $(".required").each(function () {
+            count++;
+            if ($(this).prop('checked') != true) {
+                $(this).css('box-shadow', '0px 0px 6px 2px rgba(255,0,0,1)');
+
+            } else {
+                checkedCount++;
+                $(this).css('box-shadow', 'none');
+                return true;
+            }
+        });
+        if (checkedCount === count) {
+            $('#accept')
+                .removeClass('non-active')
+                .removeAttr('disabled');
+            // $('#accept').trigger('click');
+        }
+    }
+
+    $(document).ready(function () {
+        $("form").submit(function (e) {
+            e.preventDefault();
+            let data = {};
+            {% for _agency in booking.agencies %}
+                {% for document in _agency.documents %}
+                    data.agencyCondition{{ document.id }} = $("input[name=agencyCondition{{ document.id }}]").is(':checked') ? 1 : 0;
+                {% endfor %}
+            {% endfor %}
+            data.conditionsFirm = $("input[name=conditionsFirm]").is(':checked') ? 1 : 0;
+            data.conditionsAnvr = $("input[name=conditionsANVR]").is(':checked') ? 1 : 0;
+            data.firmPolicy = $("input[name=firmPolicy]").is(':checked') ? 1 : 0;
+            data.wantNews = $("input[name=wantNews]").is(':checked') ? 1 : 0;
+            data.newsOnEmail = $("input[name=newsOnEmail]").is(':checked') ? 1 : 0;
+            $.ajax({
+                url: "{{ url('privacy-policy/save') }}",
+                method: 'post',
+                data: {data: data, id: {{ booking.id }}, _token: '{{ csrf_token() }}'}
+            }).done(function () {
+                $('#main').toggle();
+                $('#main_header').toggle();
+                $('#thankyou').toggle();
+            });
+        });
+
+        $('#check-all').on('click', function () {
+            $("input[type=checkbox]").each(function () {
+                $(this).prop('checked', true);
+            });
+            unlockButton();
+        });
+    });
+
+</script>
+</body>
+
+</html>
